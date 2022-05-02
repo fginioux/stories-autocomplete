@@ -1,38 +1,104 @@
+body {
+  background: rgba(34 36 38 /0.05);
+}
+
 .App {
-  text-align: center;
+  padding: 1rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.SearchField {
+  margin-bottom: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Sorting-criterions {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.ui.form .inline.fields {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.ui.form .ui.dropdown {
+  max-width: 7rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.ui.radio.checkbox {
+  margin-right: 0.5rem;
+}
+
+.ui.radio.checkbox:last-of-type {
+  margin-right: 1.5rem;
+}
+
+.StoriesList {
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  border-radius: 0.4rem;
+  padding: 1rem !important;
+  background-color: #fff;
+}
+
+.StoriesList--empty {
+  background-color: transparent;
+  border-color: transparent;
+  padding: 1rem 0 !important;
+}
+
+.StoriesList p {
+  margin: 0 0 0.3rem 0;
+}
+
+.StoriesList p span {
+  display: block;
+}
+
+.StoriesList .ui.item {
+  padding-bottom: 1rem !important;
+}
+
+.StoriesList .ui.item a .icon {
+  position: relative;
+  left: 0.3rem;
+  top: -0.2rem;
+}
+
+@media only screen and (min-width: 375px) {
+  .Stories-search-bar .ui.form .ui.dropdown {
+    margin-top: 0 !important;
   }
-  to {
-    transform: rotate(360deg);
+
+  .Sorting-criterions {
+    display: inline-block;
+    width: auto;
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .Stories-search-bar {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .Stories-search-bar .SearchField {
+    width: calc(100% - 350px);
+  }
+
+  .Stories-search-bar .ui.form {
+    width: 330px;
+  }
+
+  .StoriesList p span {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+  .StoriesList p span:last-child {
+    margin-right: 0;
   }
 }
