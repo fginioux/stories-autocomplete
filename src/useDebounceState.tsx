@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function useDebounceState<T>(
   value: T,
@@ -7,15 +7,30 @@ function useDebounceState<T>(
   const [state, setState] = useState<T>(value);
   const [debounceState, setDebounceState] = useState<T>(value);
 
+  // useRef keeping track of the timeout id
+  const timeout = useRef<null | number>(null);
+
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    const { clearTimeout, setTimeout } = window;
+
+    // clear the ref
+    if (timeout.current) {
+      clearTimeout(timeout.current);
+      timeout.current = null;
+    }
+
+    // set to the ref.current
+    timeout.current = setTimeout(() => {
       setDebounceState(state);
+      timeout.current = null;
     }, debounceTime);
 
     return () => {
-      clearTimeout(timeout);
+      if (timeout.current) {
+        clearTimeout(timeout.current);
+      }
     };
-  }, [state, debounceTime]);
+  }, [state, debounceTime, timeout]);
 
   return [state, debounceState, setState];
 }
